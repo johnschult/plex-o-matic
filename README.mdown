@@ -1,0 +1,8 @@
+Summary
+=======
+Not really sure what the plans are for this yet.  I wrote it so I could check to see
+if I had a movie already in Plex.
+
+Features
+========
+* Allows real-time searching for movie titles in Plex video database
