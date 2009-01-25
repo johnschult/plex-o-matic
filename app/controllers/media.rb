@@ -1,6 +1,7 @@
 class Media < Application
 
   def index
+    @number_of_movies = Movie.count
     render
   end
   
@@ -11,12 +12,14 @@ class Media < Application
     unless q.empty?
       repository.adapter.query(
       <<-SQL
-        SELECT c00,c07,c11,c12,c14,c18
+        SELECT c00,c07,c11,c12,c14
         FROM movie WHERE c00 LIKE '% #{q}%' OR c00 LIKE '#{q}%'
       SQL
-      ).inject('') do |s,m|
-        s << "#{m.c00}|#{m.c07}|#{m.c11}|#{get_rating_image(m.c12)}|#{m.c14}\n"
-        s
+      ).inject(String.new) do |str, movie|
+        # handle wacky movie lengths with '|' char
+        length = movie.c11.split('|')[0].rstrip
+        str << "#{movie.c00}|#{movie.c07}|#{length}|#{get_rating_image(movie.c12)}|#{movie.c14}\n"
+        str
       end
     end
   end
