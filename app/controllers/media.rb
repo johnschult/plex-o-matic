@@ -27,7 +27,7 @@ class Media < Application
   private
   
   def get_rating_image(str)
-    str =~ /^Rated\s(G|PG|PG-13|R|NC-17|NR)\s?[^-]*$/
+    str =~ /^Rated\s(G|PG-13|PG|R|NC-17|NR)/
     if rating = $1
       "/images/rating_#{rating.gsub('-', '').downcase}.gif"
     end
