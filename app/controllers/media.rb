@@ -18,7 +18,7 @@ class Media < Application
       ).inject(String.new) do |str, movie|
         # handle wacky movie lengths with '|' char
         movie.c11 =~ /^(\d*\smin)/
-        str << "#{movie.c00}|#{movie.c07}|#{$1}|#{get_rating_image(movie.c12)}|#{movie.c14}\n"
+        str << "#{movie.c00}|#{movie.c07}|#{$1}|#{get_rating_image(movie.c12)}|#{movie.c14.gsub(' ','')}\n"
         str
       end
     end
