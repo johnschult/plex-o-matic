@@ -17,8 +17,8 @@ class Media < Application
       SQL
       ).inject(String.new) do |str, movie|
         # handle wacky movie lengths with '|' char
-        length = movie.c11.split('|')[0].rstrip
-        str << "#{movie.c00}|#{movie.c07}|#{length}|#{get_rating_image(movie.c12)}|#{movie.c14}\n"
+        movie.c11 =~ /^(\d*\smin)/
+        str << "#{movie.c00}|#{movie.c07}|#{$1}|#{get_rating_image(movie.c12)}|#{movie.c14}\n"
         str
       end
     end

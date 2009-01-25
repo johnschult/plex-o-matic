@@ -8,8 +8,10 @@ $(document).ready(function(){
   function formatItem(row) {
     // title, one-liner, year, length, rating, genre
     html = "<b>" + row[0] + "</b>";
-    html += "<img src='" + row[3] + "' />"
-    html += "<br/><span>" + row[1] + " ● " + row[4] + " ● " + row[2] + "</span>";
+    html += "<img src='" + row[3] + "' /><br/>"
+    html += "<span>" + row[1] + " ● " + row[4]
+    if (row[2]) html +=" ● " + row[2]
+    html += "</span>";
   	return html;
   }
 
